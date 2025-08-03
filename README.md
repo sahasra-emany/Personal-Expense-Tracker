@@ -33,10 +33,5 @@ This was our first ever project, something we worked hard for and loved each and
 
 - Sahasra Emany
 - Tanisha Kolariya
-
----
-##  License
-
-This project is licensed just for academic purposes– see the [LICENSE] file for details.
-
+  
 ---
