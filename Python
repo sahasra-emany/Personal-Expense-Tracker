@@ -1,0 +1,61 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+total_salary = int(input("Enter the total salary: "))
+
+categories = []
+expenses = []
+
+while True:
+    enter1 = str(input("Category: "))
+    enter2 = int(input("Expense: "))
+    
+    if enter1 == "done" and enter2 == 0:
+        break
+    
+    categories.append(enter1)
+    expenses.append(enter2)
+
+df = pd.DataFrame({
+    "Category": categories,
+    "Expense": expenses
+})
+expenses_sum = df["Expense"].sum()
+if expenses_sum > total_salary:
+    print("You have exceeded your total salary by", expenses_sum - total_salary)
+else:
+    print("You are within your total salary limit.")
+choose_visualization = input("Choose visualization (bar/pie/line/histogram/scatter ): ").strip().lower()
+if choose_visualization == "bar":
+    df.plot(kind='bar', x='Category', y='Expense', color='blue')
+    plt.title('Bar Chart of Expenses by Category')
+    plt.xlabel('Category')
+    plt.ylabel('Expense')
+    plt.show()
+elif choose_visualization == "pie":
+    df.plot(kind='pie', y='Expense', labels=df['Category'], autopct='%1.0f%%', startangle=90)
+    plt.title('Pie Chart of Expenses by Category')
+    plt.ylabel('')
+    plt.show()
+elif choose_visualization == "line":
+    df.plot(kind='line', x='Category', y='Expense', marker='*', color='green',markersize= 5)
+    plt.title('Line Chart of Expenses by Category')
+    plt.xlabel('Category')
+    plt.ylabel('Expense')
+    plt.show()
+elif choose_visualization == "histogram":
+    df['Expense'].plot(kind='hist', bins=10, color='purple', edgecolor='black')
+    plt.title('Histogram of Expenses')
+    plt.xlabel('Expense')
+    plt.ylabel('Frequency')
+    plt.show()
+elif choose_visualization == "scatter":
+    df.plot(kind='scatter', x='Category', y='Expense', color='red')
+    plt.title('Scatter Plot of Expenses by Category')
+    plt.xlabel('Category')
+    plt.ylabel('Expense')
+    plt.show()
+else:
+    print("Invalid visualization choice. Please choose from bar, pie, line, histogram, or scatter.")  
+print("Thank you for using the expense tracker!!")
